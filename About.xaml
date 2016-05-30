@@ -1,0 +1,25 @@
+﻿<Window x:Class="Drop.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About Drop"  Height="131.954" Width="800"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" >
+    <Window.Background>
+        <SolidColorBrush Opacity="0.5" Color="Black"/>
+    </Window.Background>
+    <Grid Height="130" VerticalAlignment="Top">
+        <Button x:Name="btnClose" Content="Close" Opacity="0.6" Background="#FF572323" Foreground="White" Width="50" Height="34" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right" Click="btnClose_Click" Grid.Column="1"/>
+        <!--<WrapPanel HorizontalAlignment="Left" Height="580" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="780" Grid.ColumnSpan="2">
+            
+        </WrapPanel>-->
+        <Image HorizontalAlignment="Left" Height="124" Margin="0,10,0,0" VerticalAlignment="Top" Width="99" Source="icon.png"/>
+        
+            <Label x:Name="lblTitle" Content="Drop Lite" FontSize="48" Foreground="White"  Margin="100,0,0,0" HorizontalAlignment="Left" Width="392" Height="93" VerticalAlignment="Top"/>
+                
+            <Label Content="Version 1.0, Developed By Aishwarya Shiva" Foreground="#FFFDFDFD" HorizontalAlignment="Right" Width="696" Margin="0,63,0,0" Height="30" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkStartup" Content="Launch Drop when Windows starts." HorizontalAlignment="Left" Margin="104,98,0,0" VerticalAlignment="Top" Height="32" Width="312" BorderBrush="{x:Null}" Foreground="White" FontSize="14" Checked="chkStartup_Checked" Unchecked="chkStartup_Unchecked"/>
+        <Button x:Name="btnHelp" Content="Help" Opacity="0.6" Background="#FF232A57" Foreground="White" Width="50" Height="34" VerticalAlignment="Top" Margin="0,10,75,0" HorizontalAlignment="Right" Click="btnHelp_Click"/>
+        <Button x:Name="btnHelp_Copy" Content="EULA" Opacity="0.6" Background="#FF232A57" Foreground="White" Width="50" Height="34" VerticalAlignment="Top" Margin="0,10,139,0" HorizontalAlignment="Right" Click="btnHelp_Copy_Click"/>
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,148 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:local="clr-namespace:Drop"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        x:Class="Drop.MainWindow"
+        Title="Drop Lite" Height="600" Width="800"
+        WindowStyle="None" ResizeMode="NoResize"  
+
+    WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowState="Maximized" Icon="icon.png" Activated="Window_Activated_1" DragLeave="Window_DragLeave_1">
+    <Window.Background>
+        <SolidColorBrush Opacity="0.5" Color="Black"/>
+    </Window.Background>
+    <Window.Resources>
+
+        <!-- Create a Shared ContextMenu -->
+
+        <ContextMenu x:Key="SharedContextMenu" x:Shared="true" Name="SharedContextMenu">
+
+            <MenuItem Command="Copy" Header="Copy to Clipboard">
+                <MenuItem.CommandBindings>
+                    <CommandBinding Command="ApplicationCommands.Copy" 
+                    CanExecute="RightClickCopyCmdCanExecute"
+                    Executed="RightClickCopyCmdExecuted" />
+                </MenuItem.CommandBindings>
+            </MenuItem>
+            <MenuItem Command="Delete" Header="Remove from Drop">
+                <MenuItem.CommandBindings>
+                    <CommandBinding Command="ApplicationCommands.Delete" 
+                    CanExecute="RightClickDeleteCmdCanExecute"
+                    Executed="RightClickDeleteCmdExecuted" />
+                </MenuItem.CommandBindings>
+            </MenuItem>
+        </ContextMenu>
+
+
+
+
+
+    </Window.Resources>
+    <Grid>
+        <TextBlock TextWrapping="Wrap" Text="Start dragging and this window will disappear." HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFE8D9D9" Margin="10,28,0,0"/>
+
+        <TextBlock x:Name="lblTitle" TextWrapping="Wrap" Text="Drop Lite" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FFE8D9D9" Margin="10,10,0,0" FontSize="16" FontWeight="Bold"/>
+        <!--<Button x:Name="btnAbout" Content="About..." Opacity="0.6" Background="#FF163397" Foreground="White" Click="btnAbout_Click" Width="58" Height="34" VerticalAlignment="Top" Margin="0,10,120,0" HorizontalAlignment="Right">
+            
+        </Button>-->
+        
+        <Button x:Name="btnExit" Content="Exit" Opacity="0.6" Background="#FF572323" Foreground="White" Click="btnExit_Click" Width="50" Height="34" VerticalAlignment="Top" Margin="0,10,10,0" HorizontalAlignment="Right"/>
+        <Button x:Name="btnHide" Content="Hide" Opacity="0.6" Background="#FF572323" Foreground="White" Click="btnClose_Click" Width="50" Height="34" VerticalAlignment="Top" Margin="0,10,65,0" HorizontalAlignment="Right"/>
+        <dragablz:TabablzControl Opacity="0.8" BorderBrush="#FF4C589C"  Margin="10,49,10,10" Background="#FF402D61" TabStripPlacement="Left">
+           
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>
+            <TabItem Header="Texts">
+                <ListView Background="#FF19174B" Name="texts"  
+                          ItemsSource="{Binding Path=TextItems}" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                          PreviewMouseLeftButtonDown="files_PreviewMouseLeftButtonDown" 
+                          MouseMove="files_MouseMove" 
+                          SelectionMode="Extended" ContextMenu="{DynamicResource SharedContextMenu}">  <!--local:ListBoxSelector.Enabled="True"-->
+                    <ListView.CommandBindings>
+                        <CommandBinding Command="ApplicationCommands.Copy"
+          CanExecute="CtrlCCopyCmdCanExecute" Executed="CtrlCCopyCmdExecuted" />
+                        <CommandBinding Command="ApplicationCommands.Delete"
+          CanExecute="DelDeleteCanExecute" Executed="DelCmdExecuted" />
+                    </ListView.CommandBindings>
+                    <!--<ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>-->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <local:TextItem />
+                                <Separator />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--<WrapPanel x:Name="textContainer"/>-->
+                
+            </TabItem>
+            <TabItem Header="Files">
+                <ListView x:Name="files" 
+                          Background="#FF19174B" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                          PreviewMouseLeftButtonDown="files_PreviewMouseLeftButtonDown" 
+                          MouseMove="files_MouseMove" 
+                          ItemsSource="{Binding Path=FileItems}" 
+                          SelectionMode="Extended" ContextMenu="{DynamicResource SharedContextMenu}">
+                    <ListView.CommandBindings>
+                        <CommandBinding Command="ApplicationCommands.Copy"
+          CanExecute="CtrlCCopyCmdCanExecute" Executed="CtrlCCopyCmdExecuted" />
+                        <CommandBinding Command="ApplicationCommands.Delete"
+          CanExecute="DelDeleteCanExecute" Executed="DelCmdExecuted" />
+                    </ListView.CommandBindings>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <local:FileItem />
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </TabItem>
+            <TabItem Header="Folders">
+                <ListView x:Name="folders" 
+                          Background="#FF19174B" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                          PreviewMouseLeftButtonDown="files_PreviewMouseLeftButtonDown" 
+                          MouseMove="files_MouseMove" 
+                          ItemsSource="{Binding Path=FolderItems}" ContextMenu="{DynamicResource SharedContextMenu}" >
+                    <ListView.CommandBindings>
+                        <CommandBinding Command="ApplicationCommands.Copy"
+          CanExecute="CtrlCCopyCmdCanExecute" Executed="CtrlCCopyCmdExecuted" />
+                        <CommandBinding Command="ApplicationCommands.Delete"
+          CanExecute="DelDeleteCanExecute" Executed="DelCmdExecuted" />
+                    </ListView.CommandBindings>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <local:FolderItem  />
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </TabItem>
+        </dragablz:TabablzControl>
+        <Button x:Name="btnAbout" Content="About" Opacity="0.6" Background="#FF232A57" Foreground="White" Width="50" Height="34" VerticalAlignment="Top" Margin="0,10,120,0" HorizontalAlignment="Right" Click="btnAbout_Click"/>
+        <Button x:Name="btnClipBoard" Content="Enable Clipboard Monitoring" Opacity="0.6" Background="#FF232A57" Foreground="White" Width="200" Height="34" VerticalAlignment="Top" Margin="0,10,200,0" HorizontalAlignment="Right" Click="btnClipBoard_Click"/>
+        
+        
+    </Grid>
+</Window>
