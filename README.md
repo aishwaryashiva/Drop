@@ -9,5 +9,3 @@ Drop also monitors your Windows Clipboard for data and adds it to Drop Bucket au
 A demostration of how it works can be viewed here: https://www.youtube.com/watch?v=YT_jAjn0wA0
 
 Download from here: http://drop.codeplex.com/
-
-<img src="https://d2yca1enuxtdrs.cloudfront.net/images/resize/product/1240/9631314306fedf04f6dff87b821b857e.jpg" alt="Download Drop"/>
