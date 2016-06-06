@@ -10,3 +10,4 @@ A demostration of how it works can be viewed here: https://www.youtube.com/watch
 
 Download from here: http://drop.codeplex.com/
 
+<img src="https://d2yca1enuxtdrs.cloudfront.net/images/resize/product/1240/9631314306fedf04f6dff87b821b857e.jpg" alt="Download Drop"/>
