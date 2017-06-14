@@ -8,4 +8,4 @@ Drop also monitors your Windows Clipboard for data and adds it to Drop Bucket au
 
 A demostration of how it works can be viewed here: https://www.youtube.com/watch?v=YT_jAjn0wA0
 
-Download from here: http://drop.codeplex.com/
+Download from here: https://github.com/aishwaryashiva/Drop/raw/master/DropLite.zip
